@@ -76,3 +76,55 @@ footer {
     position: fixed;
     left: 0;
 }
+/* --- EGYSÉGES MEGJELENÉS KÜLÖNBÖZŐ KÉPERNYŐKÖN --- */
+
+/* Ne nyúljon szét nagy monitoron sem */
+main {
+  max-width: 900px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* Képernyőméret szerinti finomítás */
+@media (max-width: 1200px) {
+  section {
+    margin: 40px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+  }
+
+  main {
+    width: 95%;
+  }
+
+  section {
+    margin: 20px;
+    font-size: 17px;
+  }
+
+  h1 a {
+    font-size: 26px;
+  }
+
+  #menu a {
+    display: block;
+    padding: 8px 0;
+    font-size: 18px;
+  }
+
+  #urlap input,
+  #urlap textarea,
+  #urlap select {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  button[type="submit"] {
+    margin-bottom: 40px;
+  }
+}

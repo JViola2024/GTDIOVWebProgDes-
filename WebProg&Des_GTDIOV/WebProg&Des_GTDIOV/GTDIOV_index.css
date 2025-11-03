@@ -1,54 +1,47 @@
-/* ====== FINOM FIXEK – MINDEN MÁST HAGYJ ÚGY, AHOGY VAN ====== */
+/* ==== KIEGÉSZÍTÉS – MÁS NEVŰ/MEGLÉVŐ SZABÁLYT NEM ÍROK FELÜL ==== */
 
-/* 1) Footer ne takarja ki a gombot, legyen hely alul */
-footer { position: static; }
-main { padding-bottom: 64px; }   /* biztos hely a gombnak */
-form#urlap { margin-bottom: 24px; }
+/* 1) A lábléc ne takarja ki a gombot, legyen térköz alul */
+footer { position: static; }           /* nem fixed */
+main   { padding-bottom: 64px; }       /* hely a gombnak */
+#urlap  { margin-bottom: 24px; }       /* kis térköz a form végén */
+button[type="submit"]{ margin-bottom: 24px; }
 
-/* 2) Form mezők rendezése desktopon – címke balra, mező jobbra */
-form#urlap label {
-  display: inline-block;
-  min-width: 140px;
-  vertical-align: top;
-}
-form#urlap input[type="text"],
-form#urlap input[list],
-form#urlap input[type="number"],
-form#urlap input[type="date"],
-form#urlap textarea,
-form#urlap select {
-  width: calc(100% - 160px);    /* a címke mellett férjen el */
-  max-width: 520px;
-}
-
-/* Megjegyzés szövegdoboz: a címke ALATT legyen (vizuálisan is) */
-#komment { display: block; }
-
-/* Küldés gomb köré egy kis térköz */
-button[type="submit"] { margin-top: 8px; margin-bottom: 24px; }
-
-/* 3) Mobil finomhangolás (SEMMI dizájncsere, csak igazítás) */
-@media (max-width: 768px) {
-  /* a fixed háttér mobilon gyakran csúszik — váltson scrollra */
+/* 2) Mobilon a fixed háttér csúszik → scroll-ra váltunk */
+@media (max-width: 768px){
   body { background-attachment: scroll; }
+}
 
-  /* kisebb margók, olvashatóbb szöveg */
+/* 3) Mobilos űrlap – egy oszlop, címke felül, mező alatta */
+@media (max-width: 768px){
+  /* kisebb külső margó a szakaszokon, a szöveg ne legyen justify */
   section { margin: 16px; font-size: 18px; text-align: left; }
 
-  /* menü és cím kicsit kompaktabb */
-  nav ul li { margin-right: 12px; }
-  h1 a { font-size: 26px; }
+  /* címkék blokkban, mezők teljes szélességen */
+  #urlap label { display: block; margin-bottom: 6px; }
+  #urlap input[type="text"],
+  #urlap input[list],
+  #urlap input[type="number"],
+  #urlap input[type="date"],
+  #urlap textarea,
+  #urlap select {
+    width: 100%;
+    max-width: 100%;
+  }
 
-  /* űrlap: EGY oszlop, címke FELÜL, mező ALATTA, teljes szélesség */
-  form#urlap label { display: block; min-width: 0; margin-bottom: 6px; }
-  form#urlap input[type="text"],
-  form#urlap input[list],
-  form#urlap input[type="number"],
-  form#urlap input[type="date"],
-  form#urlap textarea,
-  form#urlap select { width: 100%; max-width: 100%; }
+  /* checkbox/radio kényelmesebb érintés, szebb törés */
+  #urlap input[type="checkbox"],
+  #urlap input[type="radio"] { margin-right: 6px; }
+}
 
-  /* checkbox/radio: szép, törhető sorok */
-  form#urlap input[type="checkbox"],
-  form#urlap input[type="radio"] { margin-right: 6px; }
+/* 4) Asztali elrendezésnél marad minden, csak kis biztonsági limit,
+   hogy a mezők ne lógjanak túl, ha szűk az ablak */
+@media (min-width: 769px){
+  #urlap input[type="text"],
+  #urlap input[list],
+  #urlap input[type="number"],
+  #urlap input[type="date"],
+  #urlap textarea,
+  #urlap select {
+    max-width: 520px;
+  }
 }

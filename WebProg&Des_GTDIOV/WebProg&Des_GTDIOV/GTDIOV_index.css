@@ -1,88 +1,102 @@
-html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}
+/* ===== Alapok ===== */
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
 
 :root{
-  --bg:#0f1216; --ink:#111; --muted:#5b5b5b; --brand:#226089;
-  --brand-2:#374249; --card:#fff; --radius:12px;
-  --shadow:0 8px 24px rgba(0,0,0,.08); --max:900px;
+  --bg:#0f1216; --ink:#111; --brand:#226089; --brand-2:#374249;
+  --card:#fff; --max:900px;
 }
 
-/* Háttér – nem fixed mobilon, halvány overlay-vel */
 body{
   margin:0;
-  background-image:url("./képek/asd.jpg");
-  background-repeat:no-repeat;
-  background-size:cover;
-  background-position:center;
-  background-attachment:scroll;
-  color:var(--ink);
-  font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
-  line-height:1.6;
-  position:relative;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  line-height:1.6; color:var(--ink);
+  background: url("./képek/asd.jpg") center/cover no-repeat fixed;
 }
-body::before{
-  content:""; position:fixed; inset:0;
-  background:rgba(255,255,255,.75);
-  pointer-events:none;
+/* Mobilon a fixed bugos → scroll-ra váltunk */
+@media (max-width: 768px){
+  body{ background-attachment: scroll; }
 }
 
-/* Fejléc + menük */
-header{background:#000;color:var(--brand);padding:12px 16px;text-align:center;position:relative;z-index:1}
-h1{margin:8px 0 4px}
-h1 a{color:var(--brand);text-decoration:none;font-size:32px}
-h1 a:hover{color:var(--brand-2);text-decoration:underline}
+/* ===== Fejléc + menük ===== */
+header{ background:#000; color:var(--brand); padding:12px 16px; text-align:center; }
+h1{ margin:8px 0 4px; }
+h1 a{ color:var(--brand); text-decoration:none; font-size:32px; }
+h1 a:hover{ color:var(--brand-2); text-decoration:underline; }
 
-/* Felső social nav */
-#kontakt ul{list-style:none;margin:0 0 8px;padding:0;display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap}
-#kontakt a{color:#fff;text-decoration:none;font-weight:600;display:inline-flex;gap:6px;align-items:center}
-#kontakt a:hover{color:#ddd}
+#kontakt ul, #menu ul{
+  list-style:none; margin:8px 0 0; padding:0;
+  display:flex; gap:12px; justify-content:center; flex-wrap:wrap;
+}
+#kontakt a{ color:#fff; text-decoration:none; font-weight:600; }
+#kontakt a:hover{ color:#ddd; }
+#menu a{ color:var(--brand); text-decoration:none; font-size:18px; padding:6px 10px; border-radius:8px; }
+#menu a:hover{ color:var(--brand-2); text-decoration:underline; }
+nav ul li{ display:inline-block; margin:0; }
 
-/* Fő menü */
-#menu ul{list-style:none;margin:8px 0 0;padding:0;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-#menu a{color:var(--brand);text-decoration:none;font-size:18px;padding:6px 10px;border-radius:8px}
-#menu a:hover{color:var(--brand-2);text-decoration:underline}
-
-/* Tartalomdoboz */
+/* ===== Tartalomdoboz ===== */
 main{
   max-width:var(--max);
-  margin:0 auto;
-  padding:16px;
-  background:linear-gradient(#fff,#f1f1f1);
-  position:relative; z-index:1;
+  margin:0 auto; padding:16px;
+  background: linear-gradient(#ffffff, #f2f2f2);
 }
-section{margin:24px 0}
-h2{border-bottom:2px solid var(--brand);padding-bottom:6px;margin-bottom:12px}
+section{ margin:24px 0; }
+h2{ border-bottom:2px solid var(--brand); padding-bottom:6px; margin-bottom:12px; }
 
-/* Űrlap – egységes, nem csúszik szét */
-form#urlap{display:grid;grid-template-columns:1fr;gap:12px}
-form#urlap label{display:block;font-weight:600;margin-bottom:4px}
+/* A bekezdések NE legyenek justify-oltak mobilon */
+p{ text-align:left; hyphens:auto; }
+
+/* ===== Űrlap – stabil, egy oszlop ===== */
+form#urlap{
+  display:flex; flex-direction:column; gap:12px;
+}
+
+/* Címkék a mezők felett, normál ritmussal */
+form#urlap label{ font-weight:600; margin:4px 0; }
+
+/* Minden mező teljes szélességen, ne lógjon ki */
 form#urlap input[type="text"],
 form#urlap input[type="number"],
 form#urlap input[type="date"],
 form#urlap input[list],
 form#urlap textarea,
 form#urlap select{
-  width:100%;max-width:100%;
-  padding:10px 12px;border:1px solid #cfd3d7;border-radius:8px;background:#fff;
+  width:100%; max-width:100%;
+  padding:10px 12px;
+  border:1px solid #cfd3d7; border-radius:8px; background:#fff;
 }
-form#urlap textarea{min-height:120px;resize:vertical}
 
-/* Checkboxok / rádiók szép sorban */
-.inline-group{display:flex;flex-wrap:wrap;gap:16px}
-.inline-group label{display:inline-flex;align-items:center;gap:8px;font-weight:500;margin:0}
+/* Textarea magasság + csak függőlegesen méretezhető */
+form#urlap textarea{ min-height:120px; resize:vertical; }
 
-/* Küldés gomb mindig látható, jól nyomható */
+/* Checkboxok és rádiók rendezett sora – a label tartalmazza a inputot */
+form#urlap input[type="checkbox"],
+form#urlap input[type="radio"]{
+  margin-right:8px; transform: translateY(1px);
+}
+form#urlap label[for="biztonsag"],
+form#urlap label[for="adatvedelem"],
+form#urlap label[for="nagyon_elegedett"],
+form#urlap label[for="elegedett"],
+form#urlap label[for="semleges"]{
+  display:inline-flex; align-items:center; gap:8px; font-weight:500;
+  margin-right:16px;
+}
+
+/* Küldés gomb mindig látható, nagy érintési felület */
 form#urlap button[type="submit"]{
-  padding:12px 16px;border:none;border-radius:8px;
-  background:var(--brand);color:#fff;font-weight:700;cursor:pointer;width:100%;
+  padding:12px 16px; border:none; border-radius:8px;
+  background:var(--brand); color:#fff; font-weight:700; cursor:pointer;
+  width:100%;
 }
-form#urlap button[type="submit"]:hover{background:#1a4a67}
+form#urlap button[type="submit"]:hover{ background:#1a4a67; }
 
-/* Lábléc – nem fixed, így nem takar */
-footer{text-align:center;background:#000;color:var(--brand);padding:12px 0}
+/* ===== Lábléc – ne takarja a gombot ===== */
+footer{ text-align:center; background:#000; color:var(--brand); padding:12px 0; position:static; }
 
-/* Finom mobilhangolás */
+/* ===== Mobil finomhangolás ===== */
 @media (max-width:768px){
-  h1 a{font-size:26px}
-  #menu a{font-size:16px}
-  section{margin:16px 0}
+  h1 a{ font-size:26px; }
+  #menu a{ font-size:16px; }
+  section{ margin:16px 0; }
 }

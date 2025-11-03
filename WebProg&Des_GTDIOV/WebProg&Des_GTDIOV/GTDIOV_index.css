@@ -1,21 +1,78 @@
-/* ===== KIEGÉSZÍTÉS (az eredeti alá) ===== */
+body {
+    margin: 0px 0px;
+    background-image: url("./képek/asd.jpg");
+    background-repeat: no-repeat;
+    background-size: cover; 
+    background-attachment:fixed;  
+    opacity: 0.88;
+}
 
-/* A fixed lábléc miatt legyen hely alul, hogy a Küldés ne lógjon be */
-body { padding-bottom: 80px; }
-#urlap { margin-bottom: 24px; }
-button[type="submit"] { margin-bottom: 24px; }
+header {
+    background-color: #000000;
+    color: #226089;
+    padding: 1px;
+    text-align: center;
+}
 
-/* Mobil finomhangolás – NEM változtatja meg a dizájnt */
-@media (max-width: 768px){
-  /* a fixed háttér mobilon csúszkálhat, ezért görgetősre váltjuk */
-  body { background-attachment: scroll; padding-bottom: 100px; }
+h1 a {
+    color: #226089;
+    padding: 2px;
+    text-decoration: none;
+    font-size: 32px;
+}
 
-  /* kicsit kisebb külső margó, de maradhat a justify is */
-  section { margin: 20px; font-size: 18px; }
+a:hover {
+    text-decoration: underline;
+    color: #374249;
+}
 
-  /* űrlap: címke felül, mező alatta, teljes szélesség */
-  #urlap label { display:block; margin-bottom:6px; }
-  #urlap input,
-  #urlap textarea,
-  #urlap select { width:100%; max-width:100%; box-sizing:border-box; }
+#menu a {
+    color: #226089;
+    padding: 12px;
+    text-decoration: none; 
+    font-size: 21px;       
+}
+
+#menu a:hover{
+    color: #374249;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 30px;
+    
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+main {
+    padding: 2px;
+    margin: auto;
+    max-width: 900px; 
+    background-image: linear-gradient( white, #706f6f);
+}
+
+h2 {
+    border-bottom: 2px solid#226089;
+}
+
+section{
+    margin:  80px 80px;
+    font-size: 20px;
+    text-align: justify;
+}
+
+
+footer {
+    text-align: center;
+    background-color: #000000;
+    color: #226089;
+    padding: 10px 0;
+    width: 100%;
+    bottom: 0;
+    position: fixed;
+    left: 0;
 }

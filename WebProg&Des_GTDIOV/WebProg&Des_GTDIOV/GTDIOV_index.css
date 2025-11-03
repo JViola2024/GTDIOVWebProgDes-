@@ -1,47 +1,78 @@
-/* ==== KIEGÉSZÍTÉS – MÁS NEVŰ/MEGLÉVŐ SZABÁLYT NEM ÍROK FELÜL ==== */
-
-/* 1) A lábléc ne takarja ki a gombot, legyen térköz alul */
-footer { position: static; }           /* nem fixed */
-main   { padding-bottom: 64px; }       /* hely a gombnak */
-#urlap  { margin-bottom: 24px; }       /* kis térköz a form végén */
-button[type="submit"]{ margin-bottom: 24px; }
-
-/* 2) Mobilon a fixed háttér csúszik → scroll-ra váltunk */
-@media (max-width: 768px){
-  body { background-attachment: scroll; }
+body {
+    margin: 0px 0px;
+    background-image: url("./képek/asd.jpg");
+    background-repeat: no-repeat;
+    background-size: cover; 
+    background-attachment:fixed;  
+    opacity: 0.88;
 }
 
-/* 3) Mobilos űrlap – egy oszlop, címke felül, mező alatta */
-@media (max-width: 768px){
-  /* kisebb külső margó a szakaszokon, a szöveg ne legyen justify */
-  section { margin: 16px; font-size: 18px; text-align: left; }
+header {
+    background-color: #000000;
+    color: #226089;
+    padding: 1px;
+    text-align: center;
+}
 
-  /* címkék blokkban, mezők teljes szélességen */
-  #urlap label { display: block; margin-bottom: 6px; }
-  #urlap input[type="text"],
-  #urlap input[list],
-  #urlap input[type="number"],
-  #urlap input[type="date"],
-  #urlap textarea,
-  #urlap select {
+h1 a {
+    color: #226089;
+    padding: 2px;
+    text-decoration: none;
+    font-size: 32px;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #374249;
+}
+
+#menu a {
+    color: #226089;
+    padding: 12px;
+    text-decoration: none; 
+    font-size: 21px;       
+}
+
+#menu a:hover{
+    color: #374249;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 30px;
+    
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+main {
+    padding: 2px;
+    margin: auto;
+    max-width: 900px; 
+    background-image: linear-gradient( white, #706f6f);
+}
+
+h2 {
+    border-bottom: 2px solid#226089;
+}
+
+section{
+    margin:  80px 80px;
+    font-size: 20px;
+    text-align: justify;
+}
+
+
+footer {
+    text-align: center;
+    background-color: #000000;
+    color: #226089;
+    padding: 10px 0;
     width: 100%;
-    max-width: 100%;
-  }
-
-  /* checkbox/radio kényelmesebb érintés, szebb törés */
-  #urlap input[type="checkbox"],
-  #urlap input[type="radio"] { margin-right: 6px; }
-}
-
-/* 4) Asztali elrendezésnél marad minden, csak kis biztonsági limit,
-   hogy a mezők ne lógjanak túl, ha szűk az ablak */
-@media (min-width: 769px){
-  #urlap input[type="text"],
-  #urlap input[list],
-  #urlap input[type="number"],
-  #urlap input[type="date"],
-  #urlap textarea,
-  #urlap select {
-    max-width: 520px;
-  }
+    bottom: 0;
+    position: fixed;
+    left: 0;
 }

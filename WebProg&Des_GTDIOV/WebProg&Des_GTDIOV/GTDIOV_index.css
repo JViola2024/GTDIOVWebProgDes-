@@ -14,24 +14,12 @@ header {
     text-align: center;
 }
 
-h1 a {
-    color: #226089;
-    padding: 2px;
-    text-decoration: none;
-    font-size: 32px;
-}
 
 a:hover {
     text-decoration: underline;
     color: #374249;
 }
 
-#menu a {
-    color: #226089;
-    padding: 12px;
-    text-decoration: none; 
-    font-size: 21px;       
-}
 
 #menu a:hover{
     color: #374249;
@@ -48,21 +36,9 @@ nav ul li a {
     text-decoration: none;
 }
 
-main {
-    padding: 2px;
-    margin: auto;
-    max-width: 900px; 
-    background-image: linear-gradient( white, #706f6f);
-}
 
 h2 {
     border-bottom: 2px solid#226089;
-}
-
-section{
-    margin:  80px 80px;
-    font-size: 20px;
-    text-align: justify;
 }
 
 

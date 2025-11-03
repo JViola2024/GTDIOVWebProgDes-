@@ -1,102 +1,54 @@
-/* ===== Alapok ===== */
-html { box-sizing: border-box; }
-*, *::before, *::after { box-sizing: inherit; }
+/* ====== FINOM FIXEK – MINDEN MÁST HAGYJ ÚGY, AHOGY VAN ====== */
 
-:root{
-  --bg:#0f1216; --ink:#111; --brand:#226089; --brand-2:#374249;
-  --card:#fff; --max:900px;
+/* 1) Footer ne takarja ki a gombot, legyen hely alul */
+footer { position: static; }
+main { padding-bottom: 64px; }   /* biztos hely a gombnak */
+form#urlap { margin-bottom: 24px; }
+
+/* 2) Form mezők rendezése desktopon – címke balra, mező jobbra */
+form#urlap label {
+  display: inline-block;
+  min-width: 140px;
+  vertical-align: top;
 }
-
-body{
-  margin:0;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  line-height:1.6; color:var(--ink);
-  background: url("./képek/asd.jpg") center/cover no-repeat fixed;
-}
-/* Mobilon a fixed bugos → scroll-ra váltunk */
-@media (max-width: 768px){
-  body{ background-attachment: scroll; }
-}
-
-/* ===== Fejléc + menük ===== */
-header{ background:#000; color:var(--brand); padding:12px 16px; text-align:center; }
-h1{ margin:8px 0 4px; }
-h1 a{ color:var(--brand); text-decoration:none; font-size:32px; }
-h1 a:hover{ color:var(--brand-2); text-decoration:underline; }
-
-#kontakt ul, #menu ul{
-  list-style:none; margin:8px 0 0; padding:0;
-  display:flex; gap:12px; justify-content:center; flex-wrap:wrap;
-}
-#kontakt a{ color:#fff; text-decoration:none; font-weight:600; }
-#kontakt a:hover{ color:#ddd; }
-#menu a{ color:var(--brand); text-decoration:none; font-size:18px; padding:6px 10px; border-radius:8px; }
-#menu a:hover{ color:var(--brand-2); text-decoration:underline; }
-nav ul li{ display:inline-block; margin:0; }
-
-/* ===== Tartalomdoboz ===== */
-main{
-  max-width:var(--max);
-  margin:0 auto; padding:16px;
-  background: linear-gradient(#ffffff, #f2f2f2);
-}
-section{ margin:24px 0; }
-h2{ border-bottom:2px solid var(--brand); padding-bottom:6px; margin-bottom:12px; }
-
-/* A bekezdések NE legyenek justify-oltak mobilon */
-p{ text-align:left; hyphens:auto; }
-
-/* ===== Űrlap – stabil, egy oszlop ===== */
-form#urlap{
-  display:flex; flex-direction:column; gap:12px;
-}
-
-/* Címkék a mezők felett, normál ritmussal */
-form#urlap label{ font-weight:600; margin:4px 0; }
-
-/* Minden mező teljes szélességen, ne lógjon ki */
 form#urlap input[type="text"],
+form#urlap input[list],
 form#urlap input[type="number"],
 form#urlap input[type="date"],
-form#urlap input[list],
 form#urlap textarea,
-form#urlap select{
-  width:100%; max-width:100%;
-  padding:10px 12px;
-  border:1px solid #cfd3d7; border-radius:8px; background:#fff;
+form#urlap select {
+  width: calc(100% - 160px);    /* a címke mellett férjen el */
+  max-width: 520px;
 }
 
-/* Textarea magasság + csak függőlegesen méretezhető */
-form#urlap textarea{ min-height:120px; resize:vertical; }
+/* Megjegyzés szövegdoboz: a címke ALATT legyen (vizuálisan is) */
+#komment { display: block; }
 
-/* Checkboxok és rádiók rendezett sora – a label tartalmazza a inputot */
-form#urlap input[type="checkbox"],
-form#urlap input[type="radio"]{
-  margin-right:8px; transform: translateY(1px);
-}
-form#urlap label[for="biztonsag"],
-form#urlap label[for="adatvedelem"],
-form#urlap label[for="nagyon_elegedett"],
-form#urlap label[for="elegedett"],
-form#urlap label[for="semleges"]{
-  display:inline-flex; align-items:center; gap:8px; font-weight:500;
-  margin-right:16px;
-}
+/* Küldés gomb köré egy kis térköz */
+button[type="submit"] { margin-top: 8px; margin-bottom: 24px; }
 
-/* Küldés gomb mindig látható, nagy érintési felület */
-form#urlap button[type="submit"]{
-  padding:12px 16px; border:none; border-radius:8px;
-  background:var(--brand); color:#fff; font-weight:700; cursor:pointer;
-  width:100%;
-}
-form#urlap button[type="submit"]:hover{ background:#1a4a67; }
+/* 3) Mobil finomhangolás (SEMMI dizájncsere, csak igazítás) */
+@media (max-width: 768px) {
+  /* a fixed háttér mobilon gyakran csúszik — váltson scrollra */
+  body { background-attachment: scroll; }
 
-/* ===== Lábléc – ne takarja a gombot ===== */
-footer{ text-align:center; background:#000; color:var(--brand); padding:12px 0; position:static; }
+  /* kisebb margók, olvashatóbb szöveg */
+  section { margin: 16px; font-size: 18px; text-align: left; }
 
-/* ===== Mobil finomhangolás ===== */
-@media (max-width:768px){
-  h1 a{ font-size:26px; }
-  #menu a{ font-size:16px; }
-  section{ margin:16px 0; }
+  /* menü és cím kicsit kompaktabb */
+  nav ul li { margin-right: 12px; }
+  h1 a { font-size: 26px; }
+
+  /* űrlap: EGY oszlop, címke FELÜL, mező ALATTA, teljes szélesség */
+  form#urlap label { display: block; min-width: 0; margin-bottom: 6px; }
+  form#urlap input[type="text"],
+  form#urlap input[list],
+  form#urlap input[type="number"],
+  form#urlap input[type="date"],
+  form#urlap textarea,
+  form#urlap select { width: 100%; max-width: 100%; }
+
+  /* checkbox/radio: szép, törhető sorok */
+  form#urlap input[type="checkbox"],
+  form#urlap input[type="radio"] { margin-right: 6px; }
 }
